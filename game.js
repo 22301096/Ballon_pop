@@ -38,6 +38,8 @@ class BalloonPopGame {
         this.setupElements();
         this.setupEventListeners();
         this.updateDisplay();
+        // Old behavior: no immediate history render after display update
+        this.renderHistory();
         this.pauseBtn.disabled = true;
     }
 
@@ -114,6 +116,54 @@ class BalloonPopGame {
         };
         this.scoreHistory.push(scoreEntry);
         sessionStorage.setItem('scoreHistory', JSON.stringify(this.scoreHistory));
+        // Old behavior: UI history did not refresh automatically after saving a new score
+        this.renderHistory();
+    }
+
+    /**
+     * Apply the selected theme to the game sky area
+     */
+    applyThemeStyles() {
+        if (!this.skyArea) {
+            return;
+        }
+        this.skyArea.classList.remove('classic', 'party', 'space');
+        this.skyArea.classList.add(this.settings.theme || 'classic');
+    }
+
+    /**
+     * Render the most recent game history entries in the game UI
+     */
+    renderHistory() {
+        if (!this.historyList) {
+            return;
+        }
+
+        this.historyList.innerHTML = '';
+        const mostRecent = this.scoreHistory.slice(-3).reverse();
+        if (mostRecent.length === 0) {
+            this.historyList.innerHTML = '<li>No games finished yet.</li>';
+            return;
+        }
+
+        mostRecent.forEach(entry => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${entry.timestamp} — ${entry.playerName}: ${entry.score} pts (${entry.popped} popped, ${entry.escaped} escaped)`;
+            this.historyList.appendChild(listItem);
+        });
+    }
+
+    /**
+     * Update the visual timer progress bar
+     */
+    updateTimerBar() {
+        if (!this.timeFill) {
+            return;
+        }
+
+        const percent = this.settings.gameLength > 0 ?
+            (this.timeLeft / this.settings.gameLength) * 100 : 0;
+        this.timeFill.style.width = `${Math.max(0, Math.min(percent, 100))}%`;
     }
 
     /**
@@ -159,6 +209,8 @@ class BalloonPopGame {
         this.skyArea = document.getElementById('skyArea');
         this.messageArea = document.getElementById('messageArea');
         this.logArea = document.getElementById('logArea');
+        this.timeFill = document.getElementById('timeFill');
+        this.historyList = document.getElementById('historyList');
         
         // Board info elements
         this.gameLengthDisplay = document.getElementById('displayGameLength');
@@ -645,6 +697,9 @@ class BalloonPopGame {
         this.themeDisplay.textContent = capitalizedTheme;
         
         this.bestScoreDisplay.textContent = this.bestScore;
+        // Old behavior: timer progress and theme styling were not refreshed during display updates.
+        this.updateTimerBar();
+        this.applyThemeStyles();
     }
 
     /**
