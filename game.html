@@ -67,7 +67,23 @@
           >
         </div>
 
-        <div id="skyArea" class="sky-area"></div>
+        <div class="time-progress">
+          <div class="time-progress-label">Time Remaining</div>
+          <div class="time-bar">
+            <div id="timeFill" class="time-fill"></div>
+          </div>
+        </div>
+
+        <!-- Old layout: only a simple sky area without timer progress / history -->
+        <!-- <div id="skyArea" class="sky-area"></div> -->
+        <div id="skyArea" class="sky-area classic"></div>
+
+        <div class="history-box">
+          <h3>Recent Game Results</h3>
+          <ul id="historyList">
+            <li>No games finished yet.</li>
+          </ul>
+        </div>
       </section>
 
       <section class="card">
