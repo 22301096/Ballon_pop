@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Balloon Pop Game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-window-wrap">
+      <section class="card">
+        <h1>Balloon Pop Challenge</h1>
+
+        <div class="button-row">
+          <button id="startBtn" type="button">Start Game</button>
+          <button id="pauseBtn" type="button">Pause / Resume</button>
+          <button id="saveBtn" type="button">Save Session</button>
+          <button id="loadBtn" type="button">Load Session</button>
+          <button id="resetBtn" type="button">Reset Game</button>
+          <button id="backBtn" type="button">Back to Settings</button>
+        </div>
+
+        <div class="stats-grid game-stats-grid">
+          <div class="stat-box">
+            <span class="label">Player</span>
+            <span id="displayPlayer">-</span>
+          </div>
+          <div class="stat-box">
+            <span class="label">Score</span>
+            <span id="displayScore">0</span>
+          </div>
+          <div class="stat-box">
+            <span class="label">Popped</span>
+            <span id="displayPopped">0</span>
+          </div>
+          <div class="stat-box">
+            <span class="label">Escaped</span>
+            <span id="displayEscaped">0</span>
+          </div>
+          <div class="stat-box">
+            <span class="label">Time Left</span>
+            <span id="displayTimeLeft">0 s</span>
+          </div>
+          <div class="stat-box">
+            <span class="label">Difficulty</span>
+            <span id="displayDifficulty">-</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div id="messageArea" class="message-area">
+          Click Start Game when ready.
+        </div>
+      </section>
+
+      <section class="card">
+        <div id="boardInfo" class="board-info">
+          <span
+            ><strong>Length:</strong>
+            <span id="displayGameLength">-</span></span
+          >
+          <span><strong>Theme:</strong> <span id="displayTheme">-</span></span>
+          <span
+            ><strong>Best Score Cookie:</strong>
+            <span id="displayBestScore">0</span></span
+          >
+        </div>
+
+        <div id="skyArea" class="sky-area"></div>
+      </section>
+
+      <section class="card">
+        <h2>Game Log</h2>
+        <div id="logArea" class="log-area"></div>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>

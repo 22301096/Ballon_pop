@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Balloon Pop Launcher</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>Balloon Pop Challenge</h1>
+      <p>Configure the game, then open the game window.</p>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>Game Setup</h2>
+
+        <form id="setupForm">
+          <div class="form-row">
+            <label for="playerName">Player Name</label>
+            <input
+              type="text"
+              id="playerName"
+              name="playerName"
+              maxlength="20"
+              placeholder="Enter player name"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="difficulty">Difficulty</label>
+            <select id="difficulty" name="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="gameLength">Game Length</label>
+            <select id="gameLength" name="gameLength">
+              <option value="20">20 seconds</option>
+              <option value="30" selected>30 seconds</option>
+              <option value="45">45 seconds</option>
+            </select>
+          </div>
+
+          <fieldset>
+            <legend>Theme</legend>
+
+            <label class="option-line">
+              <input type="radio" name="theme" value="classic" checked />
+              Classic
+            </label>
+
+            <label class="option-line">
+              <input type="radio" name="theme" value="party" />
+              Party
+            </label>
+
+            <label class="option-line">
+              <input type="radio" name="theme" value="space" />
+              Space
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Options</legend>
+
+            <label class="option-line">
+              <input type="checkbox" id="soundEnabled" checked />
+              Enable pop sound
+            </label>
+
+            <label class="option-line">
+              <input type="checkbox" id="doublePoints" />
+              Double points
+            </label>
+
+            <label class="option-line">
+              <input type="checkbox" id="bonusBalloons" checked />
+              Enable bonus balloons
+            </label>
+          </fieldset>
+
+          <div class="button-row">
+            <button type="button" id="openGameBtn">Open Game Window</button>
+            <button type="button" id="saveSettingsBtn">Save Settings</button>
+            <button type="button" id="loadSettingsBtn">Load Settings</button>
+            <button type="button" id="resetSettingsBtn">Reset Settings</button>
+            <button
+              type="button"
+              onclick="window.location.href = 'instructions.html'"
+            >
+              Instructions
+            </button>
+          </div>
+        </form>
+
+        <div class="preview-box">
+          <h3>Live Preview</h3>
+          <p id="previewText">No settings selected yet.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>Balloon Pop Launcher</p>
+    </footer>
+
+    <script src="launcher.js"></script>
+  </body>
+</html>
